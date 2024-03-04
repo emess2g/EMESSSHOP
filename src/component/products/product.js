@@ -12,11 +12,18 @@ export const fetchProduct = async () => {
         const response = await productData.get('/products');
         setTimeout(() => {
             showLoading(false);
-          }, 2000);
+          }, 1000);
 
         return response.data;
     } catch (error) {
         throw error;
     }
 };
+
+// export async function getAddedCart(id) {
+//     await productData.get(`/product:${id}`)
+//     let carts = await productData.getItem('/product');
+//     let cart = carts.find(cart => cart.id === id);
+//     return
+// }
 

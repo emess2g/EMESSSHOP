@@ -1,15 +1,16 @@
 import './Product.css'
 import {FaStar, FaStarHalf} from 'react-icons/fa'; // icon
-import React, { useState, useEffect } from 'react';
-// import { handleAddToCart} from '../navbar/Nav';
+import React, { useState, useEffect, createContext} from 'react';
 import { fetchProduct } from  './product' //import your API  function
-// import Navbar from './component/navbar/Nav.jsx'
 import Navbar from '../navbar/Nav.jsx'
+import Cart from '../cart/cart.jsx';
 
 
-const Render = () => {
+export const CartItems = createContext([]);
+
+const Product = () => {
     const [data, setData] = useState(null);
-
+ 
     // fetch data when the render mounts
     async function fetchData() {
         try {
@@ -24,20 +25,40 @@ const Render = () => {
 // useEffect block 
 useEffect(() => {
     fetchData();
-    // nav();
 }, []);
-const [cartCount, setCartCount] = useState(0);
 
-const handleAddToCart = () => {
-  setCartCount(cartCount + 1);
-  console.log("Hello world")
+const [cartCount, setCartCount] = useState(0);
+const [cart, setCart] = useState([]);
+
+ const handleAddToCart =  (dId) => {
+  setCartCount(c => c + 1);
+  const selectedItem = data.find((d)  => d.id == dId)  
+  const addCart = cart.find((c) => c.id === dId)
+
+
+  if(addCart){
+    const updatedCart = cart.map((c) => {
+        if(c.id === dId){
+            return{ ...c, quantity: (c.quantity || 1) + 1}
+        }
+        return c;
+    });
+    setCart(updatedCart);
+  } else {
+    setCart([...cart, {...selectedItem, quantity: 1}]);
+  }
+
 };
 
 
 
 return (
-    <div className="">
-         <Navbar  cartCount={cartCount}/>
+
+    <div >
+
+         <Navbar  cartCount={cartCount} cartItems={cart}/>
+
+
         { data ? (
 
             <div className="main">
@@ -45,9 +66,9 @@ return (
              { data.map((d) => {
                 return (
                     
-                    <div className="cards-wrapper">
+                    <ul className="cards-wrapper" key={d.id}>
                         
-                        <div className="cards">
+                        <li className="cards" >
                         <div className="img-container">
                         <img src={d.image} alt="" />
                         </div>
@@ -61,10 +82,11 @@ return (
                         
                         <p className='single-line'> Rating: {d.rating.count} </p>
                         </div>
-                        <button id='addCart'  className='addCart-btn' onClick={handleAddToCart} >Add to cart</button>
-                        {/* <Navbar /> */}
-                        </div>
-                    </div>
+                        <button id='addCart'  className='addCart-btn' onClick={() => handleAddToCart(d.id)} >Add to cart</button>
+                        
+                        </li>
+                    </ul>
+                    
                 )
              }) }
             </div>
@@ -74,9 +96,15 @@ return (
             </div>
         )}
 
+        {/* <CartItems.Provider value={cart}>
+         <Cart />
+        </CartItems.Provider> */}
+   
+     
+
     </div>
 )
 
 }
 
-export default Render;
+export default Product;

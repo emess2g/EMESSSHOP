@@ -1,10 +1,19 @@
 import './Nav.css'
 import { FaCartPlus } from 'react-icons/fa';
 import { GlobalLoading, showLoading } from 'react-global-loading';
-import { useState } from 'react';
+import {Link, useNavigate , } from 'react-router-dom';
+
+// import { useState } from 'react';
+// import {  Link } from 'react-router-dom';
 
 
-const Navbar = ({ cartCount }) => {
+const Navbar = ({ cartCount, cartItems }) => {
+
+  const navigate = useNavigate();
+  const navigateToCartAdded = () => {
+     navigate('/cart',{state:cartItems} );
+  }
+
 
     const show = () => {
         showLoading(true);
@@ -23,9 +32,12 @@ const Navbar = ({ cartCount }) => {
     <div className="nav-search-container">
     <input type="text"  placeholder='search items...' />
     </div>
-    <div className=" cart-icon">
+    <div  className=" cart-icon">
+      <div onClick={navigateToCartAdded}  >
         <FaCartPlus />
         <span  className='cart-count'>{cartCount} </span>
+      </div>
+  
     </div>
 
 
