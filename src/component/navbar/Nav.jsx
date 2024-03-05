@@ -1,7 +1,7 @@
 import './Nav.css'
 import { FaCartPlus } from 'react-icons/fa';
 import { GlobalLoading, showLoading } from 'react-global-loading';
-import {Link, useNavigate , } from 'react-router-dom';
+import { Form, useNavigate} from 'react-router-dom';
 
 // import { useState } from 'react';
 // import {  Link } from 'react-router-dom';
@@ -14,14 +14,12 @@ const Navbar = ({ cartCount, cartItems }) => {
      navigate('/cart',{state:cartItems} );
   }
 
-
     const show = () => {
         showLoading(true);
         setTimeout(() => {
           showLoading(false);
         }, 1000);
     }  // loading 
-
 
    return (
     <div className="nav-section">
@@ -30,7 +28,30 @@ const Navbar = ({ cartCount, cartItems }) => {
         <GlobalLoading />
     </div>
     <div className="nav-search-container">
-    <input type="text"  placeholder='search items...' />
+      <Form id="search-form" role="search">
+    <input type="search" 
+    className={searching ? 'loading' : ''}
+    aria-label='Search'
+    name='q'
+    defaultValue={q}
+     placeholder='search...' 
+     onChange={(event) => {
+      const isFirstSearch = q == null;
+      submit(event.currentTarget.form, {
+        replace: !isFirstSearch,
+      });
+     }}
+    />
+     <div
+      id="search-spinner"
+      aria-hidden
+      hidden={!searching}
+    />
+    <div
+      className="sr-only"
+      aria-live="polite"
+    ></div>
+</Form >
     </div>
     <div  className=" cart-icon">
       <div onClick={navigateToCartAdded}  >
@@ -39,8 +60,6 @@ const Navbar = ({ cartCount, cartItems }) => {
       </div>
   
     </div>
-
-
  </div>
    )
 }

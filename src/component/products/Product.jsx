@@ -3,8 +3,6 @@ import {FaStar, FaStarHalf} from 'react-icons/fa'; // icon
 import React, { useState, useEffect, createContext} from 'react';
 import { fetchProduct } from  './product' //import your API  function
 import Navbar from '../navbar/Nav.jsx'
-import Cart from '../cart/cart.jsx';
-
 
 export const CartItems = createContext([]);
 
@@ -57,7 +55,6 @@ return (
     <div >
 
          <Navbar  cartCount={cartCount} cartItems={cart}/>
-
 
         { data ? (
 
