@@ -12,7 +12,7 @@ export const fetchProduct = async () => {
         const response = await productData.get('/products');
         setTimeout(() => {
             showLoading(false);
-          }, 1000);
+          }, 500);
 
         return response.data;
     } catch (error) {

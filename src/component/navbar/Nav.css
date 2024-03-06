@@ -14,8 +14,12 @@
     text-align: start;
 }
 
-.nav-search-container>input{
+input {
     border: none;
+    padding-top: .5rem;
+}
+
+input:focus{
     outline: none;
 }
 

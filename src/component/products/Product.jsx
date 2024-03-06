@@ -1,13 +1,12 @@
 import './Product.css'
 import {FaStar, FaStarHalf} from 'react-icons/fa'; // icon
-import React, { useState, useEffect, createContext} from 'react';
+import React, { useState, useEffect, } from 'react';
 import { fetchProduct } from  './product' //import your API  function
 import Navbar from '../navbar/Nav.jsx'
 
-export const CartItems = createContext([]);
 
 const Product = () => {
-    const [data, setData] = useState(null);
+    const [data, setData] = useState([]);
  
     // fetch data when the render mounts
     async function fetchData() {
@@ -27,6 +26,7 @@ useEffect(() => {
 
 const [cartCount, setCartCount] = useState(0);
 const [cart, setCart] = useState([]);
+
 
  const handleAddToCart =  (dId) => {
   setCartCount(c => c + 1);
@@ -54,7 +54,7 @@ return (
 
     <div >
 
-         <Navbar  cartCount={cartCount} cartItems={cart}/>
+         <Navbar data={ data } cartCount={cartCount} cartItems={cart}/>
 
         { data ? (
 
@@ -76,7 +76,6 @@ return (
                          <p className="rating-icon"><FaStar /> <FaStar /> <FaStar /> <FaStar /> <FaStarHalf /></p>
                          <p className='rate-count'>{d.rating.rate}</p> 
                         </div>
-                        
                         <p className='single-line'> Rating: {d.rating.count} </p>
                         </div>
                         <button id='addCart'  className='addCart-btn' onClick={() => handleAddToCart(d.id)} >Add to cart</button>
@@ -92,12 +91,6 @@ return (
                
             </div>
         )}
-
-        {/* <CartItems.Provider value={cart}>
-         <Cart />
-        </CartItems.Provider> */}
-   
-     
 
     </div>
 )

@@ -1,5 +1,4 @@
 import { useLocation } from "react-router-dom";
-import { Link } from "react-router-dom";
 import "./Cart.css";
 
 const Cart = () => {
@@ -13,8 +12,7 @@ const Cart = () => {
       </div>
       {location.state == 0 ? (
         <div className="empty-msg">
-          <p>Cart is empty</p>
-          
+          <p>Cart is empty</p> 
         </div>
       ) : (
         <div className="cart-main-wrapper">
