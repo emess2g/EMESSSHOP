@@ -1,13 +1,12 @@
 import "./Nav.css";
-import { FaCartPlus } from "react-icons/fa";
+import { FaCartPlus, FaSearch } from "react-icons/fa";
 import { GlobalLoading, showLoading } from "react-global-loading";
 import { Form, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import PropTypes from 'prop-types'
 
-const Navbar = ({ cartCount, cartItems, data }) => {
-  const [input, setInput] = useState("");
-  const [result , setResult] = useState([])
+
+const Navbar = ({ cartCount, cartItems, products, setResults}) => {
+  const [input, setInput] = useState('');
   const navigate = useNavigate();
   const navigateToCartAdded = () => {
     navigate("/cart", { state: cartItems });
@@ -22,16 +21,18 @@ const Navbar = ({ cartCount, cartItems, data }) => {
 
 
   const handleSearch = (value) => {
-    const result = data.filter((d) => {
-      return value && d && d.title && d.title.toLowerCase().includes(value);
+   const results = products.filter((search) => {
+      return value && search && search.title && search.title.toLowerCase().includes(value);
     });
-    setResult(result)
-  };
+    setResults(results)
+  }
 
   const handleChange = (value) => {
     setInput(value);
     handleSearch(value)
   };
+
+  
 
   return (
     <div className="nav-section">
@@ -42,11 +43,13 @@ const Navbar = ({ cartCount, cartItems, data }) => {
         <GlobalLoading />
       </div>
       <div className="nav-search-container">
+        <FaSearch />
         <Form id="search-form" role="search">
           <input
-            type="text"
+            type="search"
+            aria-label="Search contacts"
             className="search-input"
-            placeholder="Search Product..."
+            placeholder="Search"
             value={input}
             onChange={(e) => handleChange(e.target.value)}
           />
@@ -58,22 +61,16 @@ const Navbar = ({ cartCount, cartItems, data }) => {
           <span className="cart-count">{cartCount} </span>
         </div>
       </div>
-      <div>
-        {result.map((r, id) => {
-          return <div className="" key={id}>
-            {r.title}
-          </div>
-        })}
-      </div>
     </div>
+   
   );
 };
 
-Navbar.propTypes = {
-  setResults: PropTypes.arrayOf(PropTypes.shape({ 
-       id: PropTypes.number,
-       name: PropTypes.string,
-  })),
-}
+// Navbar.propTypes = {
+//   setResults: PropTypes.arrayOf(PropTypes.shape({ 
+//        id: PropTypes.number,
+//        name: PropTypes.string,
+//   }))
+// }
 
 export default Navbar;

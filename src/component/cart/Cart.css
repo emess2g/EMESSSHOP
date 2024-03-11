@@ -7,7 +7,8 @@
 .cart-main-wrapper{
     display: flex ;
     justify-content: space-between;  
-    align-items: start;   
+    align-items: start; 
+    margin-top: 4rem;  
 }
 
 .empty-msg{
@@ -39,7 +40,7 @@
     background-color: white;
     border: 1px solid;
     margin-bottom: 1rem ;
-    height:  40vh;
+    height:  fit-content;
     display: flex;
     align-items: center;
 }
@@ -61,6 +62,7 @@
 
 .update-link{
     color: hsl(0, 80%, 50%);
+    cursor: pointer;
 }
 
 .cart{

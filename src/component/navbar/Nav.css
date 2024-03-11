@@ -10,13 +10,17 @@
     border-radius: .5rem;
     height: 2rem;
     border: 1px solid;
-    width: 40%;
+    display: flex;
+    justify-content: start;
+    align-content: center;
+    align-items: center;
+    gap: .6rem;
+    width: 45%;
     text-align: start;
 }
 
 input {
     border: none;
-    padding-top: .5rem;
 }
 
 input:focus{

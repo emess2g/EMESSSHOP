@@ -3,50 +3,51 @@ import {FaStar, FaStarHalf} from 'react-icons/fa'; // icon
 import React, { useState, useEffect, } from 'react';
 import { fetchProduct } from  './product' //import your API  function
 import Navbar from '../navbar/Nav.jsx'
+import SearchList from '../search/SearchList.jsx'
+
+
 
 
 const Product = () => {
-    const [data, setData] = useState([]);
- 
+    const [products, setProducts] = useState([]);
+
     // fetch data when the render mounts
     async function fetchData() {
         try {
-            const result = await fetchProduct();
-            setData(result);
+            const data = await fetchProduct();
+            setProducts(data);
         } catch (error){
             console.error('Error fetching data:', error);
         }
     }
 
-    
 // useEffect block 
 useEffect(() => {
     fetchData();
 }, []);
 
 const [cartCount, setCartCount] = useState(0);
-const [cart, setCart] = useState([]);
+const [cartItems, setCartItems] = useState([]);
+const [results, setResults] = useState([]);
 
 
- const handleAddToCart =  (dId) => {
+ const handleAddToCart =  (productId) => {
   setCartCount(c => c + 1);
-  const selectedItem = data.find((d)  => d.id == dId)  
-  const addCart = cart.find((c) => c.id === dId)
+  const isItemInCart = cartItems.find((cartItem) => cartItem.id === productId)
 
-
-  if(addCart){
-    const updatedCart = cart.map((c) => {
-        if(c.id === dId){
-            return{ ...c, quantity: (c.quantity || 1) + 1}
+  if(isItemInCart){
+    const updatedCart = cartItems.map((cartItem) => {
+        if(cartItem.id === productId){
+            return{ ...cartItem, quantity: (cartItem.quantity || 1) + 1}
         }
-        return c;
+        return cartItem;
     });
-    setCart(updatedCart);
+    setCartItems(updatedCart);
   } else {
-    setCart([...cart, {...selectedItem, quantity: 1}]);
+    setCartItems([...cartItems, {...productId, quantity: 1}]);
   }
-
 };
+
 
 
 
@@ -54,31 +55,31 @@ return (
 
     <div >
 
-         <Navbar data={ data } cartCount={cartCount} cartItems={cart}/>
-
-        { data ? (
+         <Navbar products={products} setResults={setResults} cartCount={cartCount} cartItems={cartItems}/>
+         <SearchList  results={results}/>
 
             <div className="main">
 
-             { data.map((d) => {
+             { products.map((product) => {
                 return (
                     
-                    <ul className="cards-wrapper" key={d.id}>
+                    <ul className="cards-wrapper" key={product.id}>
                         
                         <li className="cards" >
                         <div className="img-container">
-                        <img src={d.image} alt="" />
+                        <img src={product.image} alt={product.title} />
                         </div>
                         <div className="pro-info">
-                        <h4 className='pro-title'>{d.title}</h4>
-                        <p className='price'>${d.price}</p>
+                        <h4 className='pro-title'>{product.title}</h4>
+                        <p className='price'>${product.price}</p>
+                        <p className='price'>{product.quantity}</p>
                         <div className="rating">
                          <p className="rating-icon"><FaStar /> <FaStar /> <FaStar /> <FaStar /> <FaStarHalf /></p>
-                         <p className='rate-count'>{d.rating.rate}</p> 
+                         <p className='rate-count'>{product.rating.rate}</p> 
                         </div>
-                        <p className='single-line'> Rating: {d.rating.count} </p>
+                        <p className='single-line'> Rating: {product.rating.count} </p>
                         </div>
-                        <button id='addCart'  className='addCart-btn' onClick={() => handleAddToCart(d.id)} >Add to cart</button>
+                        <button id='addCart'  className='addCart-btn' onClick={() => handleAddToCart(product)} >Add to cart</button>
                         
                         </li>
                     </ul>
@@ -86,11 +87,6 @@ return (
                 )
              }) }
             </div>
-        ) : (
-            <div className="">
-               
-            </div>
-        )}
 
     </div>
 )

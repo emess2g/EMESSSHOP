@@ -2,12 +2,15 @@
     background-color: whitesmoke;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
-    margin-top: 1.4rem;
-    row-gap: 0rem;
+    text-align: start;
+    justify-content:space-evenly ;
+    margin-top: 4rem;
+    row-gap: 1rem;
+    column-gap: 0.2rem;
 }
 
 .cards-wrapper{
+    display: grid;
    background-color: white;
    border: 1px solid;
    width: 20%;
@@ -18,9 +21,10 @@
 .cards{
   display: flex;
   gap: .6rem;
+  align-items: center;
   justify-content: space-between;
   flex-direction: column;
- 
+  
 }
 
 .img-container>img{
@@ -66,5 +70,5 @@
 .addCart-btn{
     background-color: red;
     color: white;
-    width: 70%;
+    width: 60%;
 }
