@@ -1,48 +1,24 @@
 import { useLocation } from "react-router-dom";
 import "./Cart.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 
 const Cart = () => {
   const location = useLocation();
-  const [cartItems, setItems] = useState([location.state]);
+  const [cartItems, setItems] = useState([]); // Initialize as an empty array
 
-  // const handleDelete = (dId) => {
-  //   const newItems = [];
-  //   items.map((item) => {
-  //     if(item.id === dId) {
-  //       newItems.push({...item})
-  //     } else {
-  //       newItems.push(item)
-  //     }
-  //   })
+  useEffect(() => {
+    // If cart items are coming from location.state:
+    if (location.state) {
+      setItems(location.state);
+    }
+  }, [location.state]);
 
-  //   setItems(newItems)
-  // }
+  const removeFromCart = (itemId) => {
+    setItems(cartItems.filter((item) => item.id !== itemId));
+  };
 
-  const removeFromCart = (item) => {
-    setItems( item => cartItems.filter((_, c) => c !== item))
-}
-
-
-
-  // const removeFromCart = (item) => {
-  //   const isItemInCart = cartItems.find((cartItem) => cartItem.id === item.id);
-    
-  //   if (isItemInCart) {
-  //     setItems(cartItems.filter((cartItem) => cartItem.id !== item.id));
-  //     // if the quantity of the item is 1, remove the item from the cart
-  //   } else {
-  //     setItems(
-  //         cartItems.map((cartItem) => 
-  //         cartItem.id === item.id 
-  //         ? {...cartItem, quantity: cartItem.quantity - 1}
-  //         // if the quantity of the item is > 1, decrease the quantity of the item
-  //         : cartItem
-  //         )
-  //     )
-  //   }
-  //   }
+ 
 
   return (
 
@@ -50,14 +26,16 @@ const Cart = () => {
       <div className="nav-section cart-nav">
         <h2>Items Added</h2>
       </div>
-      {location.state == 0 ? (
+      {cartItems.length == 0 ? (
+        
         <div className="empty-msg">
           <p>Cart is empty</p> 
         </div>
       ) : (
         <div className="cart-main-wrapper">
           <div className="wrapper" >
-            {location.state.map(item => 
+            {
+          cartItems.map(item => 
                (
 
                   <ul  key={item.id} className="cart-wrapper" >
@@ -73,8 +51,11 @@ const Cart = () => {
                       </div>
                     </li>
                     <div className="cart-update-wrapper">
-                          <span className="update-link">Update</span>
-                          <span className="update-link"  onClick={() => removeFromCart(item)}> Delete</span>
+                          <div className="cart-update-wrapper update-link">
+                            <button className="update-link" onClick={() => handleCartIncrement(item.quantity)}>+</button>
+                            <button className="update-link" onClick={() => handleCartDecrement(item.quantity)}>-</button>
+                          </div>
+                          <button className="update-link" onClick={(event) => {event.preventDefault(); removeFromCart(item.id);}}> Delete</button>
                      </div>
                   </ul>
                   

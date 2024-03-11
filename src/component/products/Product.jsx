@@ -33,11 +33,14 @@ const [results, setResults] = useState([]);
 
  const handleAddToCart =  (productId) => {
   setCartCount(c => c + 1);
-  const isItemInCart = cartItems.find((cartItem) => cartItem.id === productId)
+  
+  const isItemInCart = cartItems.find((cartItem) => cartItem.id === productId.id)
 
   if(isItemInCart){
+    
     const updatedCart = cartItems.map((cartItem) => {
-        if(cartItem.id === productId){
+        if(cartItem.id === productId.id){
+            console.log(cartItems);
             return{ ...cartItem, quantity: (cartItem.quantity || 1) + 1}
         }
         return cartItem;
