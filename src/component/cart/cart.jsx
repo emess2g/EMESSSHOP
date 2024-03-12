@@ -1,5 +1,4 @@
 import { useLocation } from "react-router-dom";
-import "./Cart.css";
 import { useState, useEffect } from "react";
 
 

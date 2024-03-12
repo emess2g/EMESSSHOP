@@ -1,4 +1,4 @@
-import "./Nav.css";
+
 import { FaCartPlus, FaSearch } from "react-icons/fa";
 import { GlobalLoading, showLoading } from "react-global-loading";
 import { Form, useNavigate } from "react-router-dom";
@@ -35,30 +35,30 @@ const Navbar = ({ cartCount, cartItems, products, setResults}) => {
   
 
   return (
-    <div className="nav-section">
+    <div className="w-full flex  justify-around items-center p-2 bg-[#f1f1f1]">
       <div className="">
         <h2 onClick={show} className="logo">
           emessShop
         </h2>
         <GlobalLoading />
       </div>
-      <div className="nav-search-container">
-        <FaSearch />
-        <Form id="search-form" role="search">
+      <div className="w-[50%] flex items-center gap-2 bg-[#f1f1f1] rounded border border-[#111111] p-1">
+        <FaSearch className="" />
+        <Form id="search-form" role="search" className="focus:outline-none">
           <input
             type="search"
             aria-label="Search contacts"
-            className="search-input"
+            className="focus:outline-none bg-[#f1f1f1]"
             placeholder="Search"
             value={input}
             onChange={(e) => handleChange(e.target.value)}
           />
         </Form>
       </div>
-      <div className=" cart-icon">
-        <div onClick={navigateToCartAdded}>
-          <FaCartPlus />
-          <span className="cart-count">{cartCount} </span>
+      <div className="flex">
+        <div  className="flex gap-1 "  onClick={navigateToCartAdded}>
+          <FaCartPlus className="text-2xl"/>
+          <span className="absolute top-[0] right-10 text-2x bg-[#e5e5e5] rounded px-2" >{cartCount} </span>
         </div>
       </div>
     </div>

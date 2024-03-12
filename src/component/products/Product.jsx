@@ -1,4 +1,4 @@
-import './Product.css'
+
 import {FaStar, FaStarHalf} from 'react-icons/fa'; // icon
 import React, { useState, useEffect, } from 'react';
 import { fetchProduct } from  './product' //import your API  function
@@ -8,7 +8,7 @@ import SearchList from '../search/SearchList.jsx'
 
 
 
-const Product = () => {
+const Product = ({}) => {
     const [products, setProducts] = useState([]);
 
     // fetch data when the render mounts
@@ -61,28 +61,31 @@ return (
          <Navbar products={products} setResults={setResults} cartCount={cartCount} cartItems={cartItems}/>
          <SearchList  results={results}/>
 
-            <div className="main">
+            <div className="mt-6 grid grid-cols-2  gap-2 justify-items-center bg-[#e5e5e5]">
 
              { products.map((product) => {
                 return (
                     
-                    <ul className="cards-wrapper" key={product.id}>
+                    <ul className="w-[90%] flex flex-col gap-2  items-center bg-[#fefefe] rounded p-2"  key={product.id}>
                         
-                        <li className="cards" >
-                        <div className="img-container">
-                        <img src={product.image} alt={product.title} />
+                        <li className="w-[90%] flex gap-1 flex-col items-start  " >
+                        <div className='w-[50%] '>
+                        <img src={product.image} alt={product.title}  />
                         </div>
                         <div className="pro-info">
-                        <h4 className='pro-title'>{product.title}</h4>
-                        <p className='price'>${product.price}</p>
+                        <h4 className='font-semibold '>{product.title}</h4>                  
                         <p className='price'>{product.quantity}</p>
-                        <div className="rating">
-                         <p className="rating-icon"><FaStar /> <FaStar /> <FaStar /> <FaStar /> <FaStarHalf /></p>
-                         <p className='rate-count'>{product.rating.rate}</p> 
+                        <div className="flex items-center">
+                         <p className="text-[#707072] flex"><FaStar /> <FaStar /> <FaStar /> <FaStar /> <FaStarHalf /></p>
+                         <p className='font-bold'>{product.rating.rate}</p> 
                         </div>
-                        <p className='single-line'> Rating: {product.rating.count} </p>
+                        <p className='text-[#707072] font-bold'> Rating: {product.rating.count} </p>
+                        <p className='text-[#707072] font-bold'>${product.price}</p>
                         </div>
-                        <button id='addCart'  className='addCart-btn' onClick={() => handleAddToCart(product)} >Add to cart</button>
+                       
+                        <button id='addCart'  className='bg-[#111111] p-2 w-[80%] rounded' onClick={() => handleAddToCart(product)} >
+                           <p className='text-[#f1f1f1]'> Add to cart</p>
+                        </button>
                         
                         </li>
                     </ul>
