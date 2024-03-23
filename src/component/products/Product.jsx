@@ -32,16 +32,13 @@ const [results, setResults] = useState([]);
 
 
  const handleAddToCart =  (productId) => {
-  setCartCount(c => c + 1);
   
+  setCartCount(c => c + 1);
   const isItemInCart = cartItems.find((cartItem) => cartItem.id === productId.id)
-
   if(isItemInCart){
-    
     const updatedCart = cartItems.map((cartItem) => {
         if(cartItem.id === productId.id){
-            console.log(cartItems);
-            return{ ...cartItem, quantity: (cartItem.quantity || 1) + 1}
+            return{ ...cartItem, quantity: (cartItem.quantity || 1) + 1 }
         }
         return cartItem;
     });
@@ -58,32 +55,32 @@ return (
 
     <div >
 
-         <Navbar products={products} setResults={setResults} cartCount={cartCount} cartItems={cartItems}/>
+         <Navbar products={products} setResults={setResults} cartCount={cartCount} cartItems={cartItems} />
          <SearchList  results={results}/>
 
-            <div className="mt-6 grid grid-cols-2  gap-2 justify-items-center bg-[#e5e5e5]">
+            <div className="grid lg:grid-cols-4  gap-6 md:grid-cols-3  bg-[#e5e5e5] sm:grid grid-cols-2 p-2">
 
              { products.map((product) => {
                 return (
                     
-                    <ul className="w-[90%] flex flex-col gap-2  items-center bg-[#fefefe] rounded p-2"  key={product.id}>
+                    <ul className="grid bg-[#fefefe] rounded p-2 "  key={product.id}>
                         
-                        <li className="w-[90%] flex gap-1 flex-col items-start  " >
-                        <div className='w-[50%] '>
-                        <img src={product.image} alt={product.title}  />
+                        <li className="grid items-end justify-center justify-items-center " >
+                        <div className='w-[50%] flex items-center justify-center'>
+                        <img src={product.image} alt={product.title} className='w-[100%] '  />
                         </div>
-                        <div className="pro-info">
-                        <h4 className='font-semibold '>{product.title}</h4>                  
-                        <p className='price'>{product.quantity}</p>
+                        <div className="justify-items-center">
+                        <h4 className='font-semibold text-sm '>{product.title}</h4>                  
+                        <p className=''>{product.quantity}</p>
                         <div className="flex items-center">
                          <p className="text-[#707072] flex"><FaStar /> <FaStar /> <FaStar /> <FaStar /> <FaStarHalf /></p>
-                         <p className='font-bold'>{product.rating.rate}</p> 
+                         <p className='font-bold text-[#707072]'>{product.rating.rate}</p> 
                         </div>
                         <p className='text-[#707072] font-bold'> Rating: {product.rating.count} </p>
-                        <p className='text-[#707072] font-bold'>${product.price}</p>
+                        <p className='text-[red] font-bold'>${product.price}</p>
                         </div>
                        
-                        <button id='addCart'  className='bg-[#111111] p-2 w-[80%] rounded' onClick={() => handleAddToCart(product)} >
+                        <button id='addCart'  className='bg-[#111111] p-2 w-[80%] rounded hover:bg-[#707072]' onClick={() => handleAddToCart(product)} >
                            <p className='text-[#f1f1f1]'> Add to cart</p>
                         </button>
                         

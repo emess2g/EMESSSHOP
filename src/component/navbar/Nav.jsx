@@ -1,5 +1,6 @@
 
-import { FaCartPlus, FaSearch } from "react-icons/fa";
+import {CiShoppingCart } from "react-icons/ci";
+import { FaSearch} from "react-icons/fa";
 import { GlobalLoading, showLoading } from "react-global-loading";
 import { Form, useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -37,7 +38,7 @@ const Navbar = ({ cartCount, cartItems, products, setResults}) => {
   return (
     <div className="w-full flex  justify-around items-center p-2 bg-[#f1f1f1]">
       <div className="">
-        <h2 onClick={show} className="logo">
+        <h2 onClick={show} className="font-semibold">
           emessShop
         </h2>
         <GlobalLoading />
@@ -57,8 +58,8 @@ const Navbar = ({ cartCount, cartItems, products, setResults}) => {
       </div>
       <div className="flex">
         <div  className="flex gap-1 "  onClick={navigateToCartAdded}>
-          <FaCartPlus className="text-2xl"/>
-          <span className="absolute top-[0] right-10 text-2x bg-[#e5e5e5] rounded px-2" >{cartCount} </span>
+          <CiShoppingCart className="text-[2.5rem]  "/>
+          <span className="fixed lg:right-[5.4rem] md:right-[5rem]  sm:text-sm text-black font-semibold top-[1rem] right-[2.5rem]" >{cartCount} </span>
         </div>
       </div>
     </div>
