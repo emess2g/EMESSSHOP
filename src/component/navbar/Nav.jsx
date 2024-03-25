@@ -6,6 +6,8 @@ import { Form, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 
+
+
 const Navbar = ({ cartCount, cartItems, products, setResults}) => {
   const [input, setInput] = useState('');
   const navigate = useNavigate();
@@ -25,18 +27,21 @@ const Navbar = ({ cartCount, cartItems, products, setResults}) => {
    const results = products.filter((search) => {
       return value && search && search.title && search.title.toLowerCase().includes(value);
     });
+    console.log(results);
     setResults(results)
+
   }
 
-  const handleChange = (value) => {
+ const handleChange = (value) => {
     setInput(value);
     handleSearch(value)
   };
 
+
   
 
   return (
-    <div className="w-full flex  justify-around items-center p-2 bg-[#f1f1f1]">
+    <div className="w-full flex  justify-around items-center p-2 bg-[#1]">
       <div className="">
         <h2 onClick={show} className="font-semibold">
           emessShop
@@ -59,9 +64,10 @@ const Navbar = ({ cartCount, cartItems, products, setResults}) => {
       <div className="flex">
         <div  className="flex gap-1 "  onClick={navigateToCartAdded}>
           <CiShoppingCart className="text-[2.5rem]  "/>
-          <span className="fixed lg:right-[5.4rem] md:right-[5rem]  sm:text-sm text-black font-semibold top-[1rem] right-[2.5rem]" >{cartCount} </span>
+          <span className="absolute lg:right-[5.4rem] md:right-[5rem]  sm:text-sm text-black font-semibold top-[1rem] right-[2.5rem]" >{cartCount} </span>
         </div>
       </div>
+
     </div>
    
   );

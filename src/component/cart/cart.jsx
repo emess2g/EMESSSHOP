@@ -114,7 +114,7 @@ const Cart = () => {
                               onClick={() => removeFromCart(item.id)}> -</button>
                           </div>
                           <span className='' onClick={(event) => {event.preventDefault(); deleteItem(item.id);}}> 
-                          <MdOutlineDeleteOutline className="text-4xl text-[red]" /></span>
+                          <MdOutlineDeleteOutline className=" cursor-pointer text-2xl text-[red] inline" /></span>
                      </div>
                       </div>                 
                     </li>       
