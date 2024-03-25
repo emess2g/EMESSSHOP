@@ -68,8 +68,8 @@ const Cart = () => {
   return (
 
     <div className="">
-      <div className="w-full py-2 flex justify-around bg-[#e5e5e5] text-[#111111] ">
-        <h2>Items Added()</h2>
+      <div className="w-full py-2 flex justify-around bg-[#ff9d00d0] text-[#111111] ">
+        <h2>Items Added</h2>
         <button className="
         px-4 py-2 bg-[#111111] text-white text-xs font-bold uppercase
         rounded hover:bg-gray-700 focus:outline-none focus:bg-gray-700
@@ -77,7 +77,7 @@ const Cart = () => {
       </div>
       {cartItems.length == 0 ? (
         
-        <div className="flex justify-center m-[10%] h-[70vh] items-center bg-[#e5e5e5]">
+        <div className="flex justify-center m-[10%] h-[70vh] items-center bg-[#ff9d00d0]">
           <div className="">
           <h2>Cart is empty</h2> 
           <Link to="/">
