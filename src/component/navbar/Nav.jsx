@@ -41,7 +41,7 @@ const Navbar = ({ cartCount, cartItems, products, setResults}) => {
   
 
   return (
-    <div className="w-full flex  justify-around items-center p-2 bg-[#1]">
+    <div className="w-full flex  justify-around items-center p-2 bg-[rgb(237,206,53)]">
       <div className="">
         <h2 onClick={show} className="font-semibold">
           emessShop
