@@ -73,15 +73,15 @@ return (
                         <h4 className='font-semibold text-sm '>{product.title}</h4>                  
                         <p className=''>{product.quantity}</p>
                         <div className="flex items-center">
-                         <p className="text-[#707072] flex"><FaStar /> <FaStar /> <FaStar /> <FaStar /> <FaStarHalf /></p>
-                         <p className='font-bold text-[#707072]'>{product.rating.rate}</p> 
+                         <p className="text-[#ff9d00d0] flex"><FaStar /> <FaStar /> <FaStar /> <FaStar /> <FaStarHalf /></p>
+                         <p className='font-bold '>{product.rating.rate}</p> 
                         </div>
-                        <p className='text-[#707072] font-bold'> Rating: {product.rating.count} </p>
+                        <p className=' font-semibold'> Rating: {product.rating.count} </p>
                         <p className='text-[red] font-bold'>${product.price}</p>
                         </div>
                        
-                        <button id='addCart'  className='bg-[#111111] p-2 w-[80%] rounded hover:bg-[#707072]' onClick={() => handleAddToCart(product)} >
-                           <p className='text-[#f1f1f1]'> Add to cart</p>
+                        <button id='addCart'  className='bg-[#ff9d00d0] p-2 w-[80%] rounded hover:bg-[#707072]' onClick={() => handleAddToCart(product)} >
+                           <p className='text-[#111111] font-semibold'> Add to cart</p>
                         </button>                        
                         </li>
                     </ul>
@@ -102,15 +102,15 @@ return (
                         <h4 className='font-semibold text-sm '>{product.title}</h4>                  
                         <p className=''>{product.quantity}</p>
                         <div className="flex items-center">
-                         <p className="text-[#707072] flex"><FaStar /> <FaStar /> <FaStar /> <FaStar /> <FaStarHalf /></p>
-                         <p className='font-bold text-[#707072]'>{product.rating.rate}</p> 
+                         <p className="text-[#ff9d00d0] flex"><FaStar /> <FaStar /> <FaStar /> <FaStar /> <FaStarHalf /></p>
+                         <p className='font-semibold'>{product.rating.rate}</p> 
                         </div>
-                        <p className='text-[#707072] font-bold'> Rating: {product.rating.count} </p>
+                        <p className=' font-semibold'> Rating: {product.rating.count} </p>
                         <p className='text-[red] font-bold'>${product.price}</p>
                         </div>
                        
-                        <button id='addCart'  className='bg-[#f7ca00] p-2 w-[80%] rounded hover:bg-[#707072]' onClick={() => handleAddToCart(product)} >
-                           <p className='text-[#f1f1f1]'> Add to cart</p>
+                        <button id='addCart'  className='bg-[#ff9d00d0] p-2 w-[80%] rounded ' onClick={() => handleAddToCart(product)} >
+                           <p className='text-[#111111] font-semibold'> Add to cart</p>
                         </button>
                         
                         </li>

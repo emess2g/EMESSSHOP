@@ -41,7 +41,7 @@ const Navbar = ({ cartCount, cartItems, products, setResults}) => {
   
 
   return (
-    <div className="w-full flex  justify-around items-center p-2 bg-[rgb(237,206,53)]">
+    <div className="w-full flex  justify-around items-center p-2 bg-[#ffa500]">
       <div className="">
         <h2 onClick={show} className="font-semibold">
           emessShop
@@ -64,7 +64,7 @@ const Navbar = ({ cartCount, cartItems, products, setResults}) => {
       <div className="flex">
         <div  className="flex gap-1 "  onClick={navigateToCartAdded}>
           <CiShoppingCart className="text-[2.5rem]  "/>
-          <span className="absolute lg:right-[5.4rem] md:right-[5rem]  sm:text-sm text-black font-semibold top-[1rem] right-[2.5rem]" >{cartCount} </span>
+          <span className="absolute lg:right-[5.6rem] md:right-[5rem]  sm:text-sm text-black font-semibold top-[1rem] right-[2.6rem]" >{cartCount} </span>
         </div>
       </div>
 
